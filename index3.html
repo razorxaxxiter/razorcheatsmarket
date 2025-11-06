@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Game - TOKOCHEAT.ID</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: url('TKI.jpeg') center center / cover no-repeat fixed;
+            background-attachment: fixed;
+        }
+
+        .game-selection {
+            padding: 5rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-selection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('TKI.jpeg') center center / cover no-repeat;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+
+        .game-selection::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .game-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .game-button {
+            background: rgba(26, 26, 26, 0.85);
+            border: 2px solid;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .game-button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            z-index: 3;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .game-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            display: block;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
+        }
+
+        .game-button:hover .game-logo {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), inset 0 0 25px rgba(255, 255, 255, 0.08);
+        }
+
+        .game-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .game-name {
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .game-button:hover .game-name {
+            color: #ffd700;
+        }
+
+        .game-subtitle {
+            color: #ccc;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .game-button:hover .game-subtitle {
+            color: #aaa;
+        }
+
+        /* Free Fire Styling */
+        .game-button.freefire {
+            border-color: rgba(255, 107, 0, 0.3);
+        }
+
+        .game-button.freefire:hover {
+            border-color: rgba(255, 107, 0, 0.6);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
+        }
+
+        .game-button.freefire:hover .game-name {
+            color: #ff6b00;
+        }
+
+        .game-button.freefire:hover .game-logo {
+            border-color: rgba(255, 107, 0, 0.3);
+        }
+
+        /* MLBB Styling */
+        .game-button.mlbb {
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .game-button.mlbb:hover {
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .game-button.mlbb:hover .game-name {
+            color: #ffd700;
+        }
+
+        .game-button.mlbb:hover .game-logo {
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        /* PUBG Styling */
+        .game-button.pubg {
+            border-color: rgba(74, 144, 226, 0.3);
+        }
+
+        .game-button.pubg:hover {
+            border-color: rgba(74, 144, 226, 0.6);
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+        }
+
+        .game-button.pubg:hover .game-name {
+            color: #4a90e2;
+        }
+
+        .game-button.pubg:hover .game-logo {
+            border-color: rgba(74, 144, 226, 0.3);
+        }
+
+        /* Roblox Styling */
+        .game-button.roblox {
+            border-color: rgba(0, 162, 255, 0.3);
+        }
+
+        .game-button.roblox:hover {
+            border-color: rgba(0, 162, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0, 162, 255, 0.3);
+        }
+
+        .game-button.roblox:hover .game-name {
+            color: #00a2ff;
+        }
+
+        .game-button.roblox:hover .game-logo {
+            border-color: rgba(0, 162, 255, 0.3);
+        }
+
+        /* Delta Force Styling */
+        .game-button.deltaforce {
+            border-color: rgba(139, 0, 0, 0.3);
+        }
+
+        .game-button.deltaforce:hover {
+            border-color: rgba(139, 0, 0, 0.6);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
+        }
+
+        .game-button.deltaforce:hover .game-name {
+            color: #8b0000;
+        }
+
+        .game-button.deltaforce:hover .game-logo {
+            border-color: rgba(139, 0, 0, 0.3);
+        }
+
+
+        @media (max-width: 768px) {
+            .game-buttons {
+                max-width: 100%;
+                gap: 1.2rem;
+            }
+
+            .game-button {
+                padding: 1.5rem 1rem;
+            }
+
+            .game-logo {
+                width: 70px;
+                height: 70px;
+                padding: 8px;
+            }
+
+            .game-name {
+                font-size: 1.3rem;
+            }
+
+            .game-subtitle {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-buttons {
+                gap: 1rem;
+            }
+
+            .game-logo {
+                width: 60px;
+                height: 60px;
+                padding: 6px;
+            }
+
+            .game-name {
+                font-size: 1.2rem;
+            }
+
+            .game-subtitle {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="TKC.png" alt="TOKOCHEAT.ID Logo">
+                <h1>TOKOCHEAT.ID</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html#home">Home</a>
+                <a href="index3.html">Produk</a>
+                <a href="index.html#about">Tentang</a>
+                <a href="index2.html#testimonials">Testimoni</a>
+                <a href="index.html#contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="game-selection">
+        <div class="container" style="position: relative; z-index: 2;">
+            <h2 class="section-title" style="margin-bottom: 1rem; position: relative; z-index: 2;">Pilih Game Anda</h2>
+            <p style="text-align: center; color: #fff; margin-bottom: 3rem; font-size: 1.1rem; position: relative; z-index: 2; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);">
+                Pilih game untuk melihat katalog cheat premium
+            </p>
+            <div class="game-buttons">
+                <div class="game-button freefire" onclick="goToCatalog('freefire')">
+                    <span class="premium-badge">PREMIUM</span>
+                    <img src="FF LOGO.jpeg" alt="Free Fire Logo" class="game-logo">
+                    <div class="game-content">
+                        <div class="game-name">Free Fire</div>
+                        <div class="game-subtitle">Lihat Katalog Cheat</div>
+                    </div>
+                </div>
+
+                <div class="game-button mlbb" onclick="goToCatalog('mlbb')">
+                    <span class="premium-badge">PREMIUM</span>
+                    <img src="MLBB LOGO.jpeg" alt="Mobile Legends Logo" class="game-logo">
+                    <div class="game-content">
+                        <div class="game-name">Mobile Legends</div>
+                        <div class="game-subtitle">Lihat Katalog Cheat</div>
+                    </div>
+                </div>
+
+                <div class="game-button pubg" onclick="goToCatalog('pubg')">
+                    <span class="premium-badge">PREMIUM</span>
+                    <img src="PUBGM LOGO.jpeg" alt="PUBG Mobile Logo" class="game-logo">
+                    <div class="game-content">
+                        <div class="game-name">PUBG Mobile</div>
+                        <div class="game-subtitle">Lihat Katalog Cheat</div>
+                    </div>
+                </div>
+
+                <div class="game-button roblox" onclick="goToCatalog('roblox')">
+                    <span class="premium-badge">PREMIUM</span>
+                    <img src="ROBLOX LOGO.jpeg" alt="Roblox Logo" class="game-logo">
+                    <div class="game-content">
+                        <div class="game-name">Roblox</div>
+                        <div class="game-subtitle">Lihat Katalog Cheat</div>
+                    </div>
+                </div>
+
+                <div class="game-button deltaforce" onclick="goToCatalog('deltaforce')">
+                    <span class="premium-badge">PREMIUM</span>
+                    <img src="DFM LOGO.jpeg" alt="Delta Force Logo" class="game-logo">
+                    <div class="game-content">
+                        <div class="game-name">Delta Force</div>
+                        <div class="game-subtitle">Lihat Katalog Cheat</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 TOKOCHEAT.ID. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function goToCatalog(game) {
+            // Simpan pilihan game ke localStorage
+            localStorage.setItem('selectedGame', game);
+            
+            // Redirect ke halaman katalog sesuai game
+            if (game === 'freefire') {
+                window.location.href = 'index4.html';
+            } else if (game === 'mlbb') {
+                window.location.href = 'index5.html';
+            } else if (game === 'pubg') {
+                window.location.href = 'index6.html';
+            } else if (game === 'roblox') {
+                window.location.href = 'index8.html';
+            } else if (game === 'deltaforce') {
+                window.location.href = 'index7.html';
+            } else {
+                window.location.href = `index.html#products?game=${game}`;
+            }
+        }
+    </script>
+</body>
+</html>

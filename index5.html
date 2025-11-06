@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Mobile Legends - TOKOCHEAT.ID</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@600;700&family=Anton&family=Righteous&family=Exo+2:wght@400;600;700;800;900&family=Black+Ops+One&family=Audiowide&display=swap" rel="stylesheet">
+    <style>
+        .product-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .product-image {
+            aspect-ratio: 1/1 !important;
+            width: 100% !important;
+            overflow: hidden;
+            background: #0a0a0a;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .pricing-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem !important;
+            margin: 0.6rem 0 !important;
+        }
+
+        .pricing-option {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 0.5rem !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem !important;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .pricing-option:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .pricing-option.selected {
+            background: rgba(255, 215, 0, 0.25);
+            border-color: #ffd700;
+        }
+
+        .pricing-icon {
+            font-size: 1rem !important;
+            color: #ffd700;
+        }
+
+        .pricing-text {
+            flex: 1;
+            color: #e0e0e0;
+            font-size: 1rem !important;
+        }
+
+        .pricing-price {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.1rem !important;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .price-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .price-item.selected {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .price-item.selected span:first-child {
+            color: #ffed4e;
+            font-weight: bold;
+        }
+
+        .price-item.selected span:last-child {
+            color: #ffed4e;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem !important;
+            margin-top: 0.6rem !important;
+        }
+
+        .btn-cart {
+            flex: 1;
+            padding: 0.5rem !important;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem !important;
+        }
+
+        .btn-cart:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+        }
+
+        .btn-features {
+            flex: 1;
+            padding: 0.5rem !important;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem !important;
+        }
+
+        .btn-features:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        /* Features Modal */
+        .features-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2998;
+            backdrop-filter: blur(3px);
+        }
+
+        .features-overlay.active {
+            display: block;
+        }
+
+        .features-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            z-index: 2999;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .features-modal.active {
+            display: block;
+        }
+
+        .features-header {
+            padding: 1.5rem;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            z-index: 10;
+        }
+
+        .features-header h2 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .features-close {
+            background: transparent;
+            border: none;
+            color: #ffd700;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            line-height: 1;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .features-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .features-body {
+            padding: 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .features-list li {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 215, 0, 0.05);
+            border-left: 3px solid #ffd700;
+            border-radius: 5px;
+            color: #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .features-list li:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .features-list li::before {
+            content: "✓ ";
+            color: #ffd700;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Catalog Title Animations */
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 100% center;
+            }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4)) drop-shadow(0 0 30px rgba(255, 215, 0, 0.2));
+            }
+            50% {
+                filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.7)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.4));
+            }
+        }
+
+        .catalog-title {
+            position: relative;
+        }
+
+        .catalog-title::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .product-card {
+            position: relative;
+            overflow: visible;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.5), rgba(255, 237, 78, 0.5), rgba(255, 215, 0, 0.5));
+            background-size: 200% 200%;
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+            animation: border-glow 3s ease infinite;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes border-glow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .product-card:hover::after {
+            opacity: 1;
+        }
+
+        .product-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 215, 0, 0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover .product-image::after {
+            opacity: 1;
+        }
+
+        .product-image img {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        @media (max-width: 768px) {
+            .catalog-title {
+                font-size: 2.5rem !important;
+                letter-spacing: 2px !important;
+            }
+
+            .catalog-subtitle {
+                font-size: 1rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .catalog-title {
+                font-size: 2rem !important;
+                letter-spacing: 1px !important;
+            }
+
+            .catalog-subtitle {
+                font-size: 0.9rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="TKC.png" alt="TOKOCHEAT.ID Logo">
+                <h1>TOKOCHEAT.ID</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html#home">Home</a>
+                <a href="index3.html">Produk</a>
+                <a href="index.html#about">Tentang</a>
+                <a href="index2.html#testimonials">Testimoni</a>
+                <a href="index.html#contact">Kontak</a>
+            </nav>
+            <div class="cart-icon" id="cartIcon" style="cursor: pointer; pointer-events: auto; z-index: 1000;">
+                🛒
+                <span class="cart-badge hidden" id="cartBadge">0</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="products" id="products" style="padding: 2rem 0; min-height: 60vh;">
+        <div class="container">
+            <h2 class="section-title catalog-title" style="font-size: 4rem; margin-bottom: 1rem; font-family: 'Black Ops One', 'Anton', 'Righteous', sans-serif; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(255, 215, 0, 0.5); animation: gradient-shift 3s ease infinite, glow-pulse 2s ease-in-out infinite; position: relative; filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));">Katalog Mobile Legends</h2>
+            <p class="catalog-subtitle" style="text-align: center; color: #aaa; margin-bottom: 2rem; font-size: 1.2rem; font-family: 'Exo 2', 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;">
+                Pilih cheat Mobile Legends premium yang sesuai dengan kebutuhan Anda
+            </p>
+            <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="ATTIC.jpeg" alt="ATTIC">
+                    </div>
+                    <div class="product-info" style="padding: 1rem !important;">
+                        <h3 style="font-size: 1.5rem !important; margin-bottom: 0.4rem !important; color: #ffd700; font-family: 'Righteous', 'Anton', sans-serif; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">CHEAT MLBB ATTIC</h3>
+                        <p class="product-desc" style="font-size: 0.95rem !important; margin-bottom: 0.5rem !important; color: #aaa; line-height: 1.4; font-family: 'Exo 2', 'Montserrat', sans-serif; font-weight: 500;">
+                            Auto Win, Map Hack, Lag Hack, Auto Farm
+                        </p>
+                        <div class="product-pricing" style="margin-bottom: 1rem; padding: 0.8rem; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 8px;">
+                            <div class="price-item" data-duration="7 Day" data-price="Rp 60.000" onclick="selectPriceItem(this, event)" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                <span style="color: #aaa;">7 Day</span>
+                                <span style="color: #ffd700; font-weight: bold;">Rp 60.000</span>
+                            </div>
+                            <div class="price-item" data-duration="30 Day" data-price="Rp 100.000" onclick="selectPriceItem(this, event)" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                <span style="color: #aaa;">30 Day</span>
+                                <span style="color: #ffd700; font-weight: bold;">Rp 100.000</span>
+                            </div>
+                            <div class="price-item" data-duration="Lifetime" data-price="Rp 180.000" onclick="selectPriceItem(this, event)" style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;">
+                                <span style="color: #aaa;">Lifetime</span>
+                                <span style="color: #ffd700; font-weight: bold;">Rp 180.000</span>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-buy" style="flex: 2; padding: 0.5rem !important; font-size: 0.8rem !important;" onclick="openPaymentModal('CHEAT MLBB ATTIC', [{'duration': '7 Day', 'price': 'Rp 60.000'}, {'duration': '30 Day', 'price': 'Rp 100.000'}, {'duration': 'Lifetime', 'price': 'Rp 180.000'}])">Beli Sekarang</button>
+                            <button class="btn-cart" onclick="addToCartFromProduct(this, 'CHEAT MLBB ATTIC')">🛒 Keranjang</button>
+                            <button class="btn-features" onclick="showFeatures('CHEAT MLBB ATTIC', ['Auto Win - Menang otomatis', 'Map Hack - Melihat seluruh peta', 'Lag Hack - Membuat musuh lag', 'Auto Farm - Farming otomatis', 'God Mode - Tidak bisa mati', 'Speed Hack - Gerakan lebih cepat', 'Anti Ban - Sistem anti deteksi'])">🔍 Fitur</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="PANDORA.jpeg" alt="PANDORA">
+                    </div>
+                    <div class="product-info" style="padding: 1rem !important;">
+                        <h3 style="font-size: 1.5rem !important; margin-bottom: 0.4rem !important; color: #ffd700; font-family: 'Righteous', 'Anton', sans-serif; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">CHEAT MLBB PANDORA</h3>
+                        <p class="product-desc" style="font-size: 0.95rem !important; margin-bottom: 0.5rem !important; color: #aaa; line-height: 1.4; font-family: 'Exo 2', 'Montserrat', sans-serif; font-weight: 500;">
+                            Auto Win, Map Hack, Lag Hack, Auto Headshot
+                        </p>
+                        <div class="product-pricing" style="margin-bottom: 1rem; padding: 0.8rem; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 8px;">
+                            <div class="price-item" data-duration="7 Day" data-price="Rp 60.000" onclick="selectPriceItem(this, event)" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                <span style="color: #aaa;">7 Day</span>
+                                <span style="color: #ffd700; font-weight: bold;">Rp 60.000</span>
+                            </div>
+                            <div class="price-item" data-duration="30 Day" data-price="Rp 100.000" onclick="selectPriceItem(this, event)" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                <span style="color: #aaa;">30 Day</span>
+                                <span style="color: #ffd700; font-weight: bold;">Rp 100.000</span>
+                            </div>
+                            <div class="price-item" data-duration="Lifetime" data-price="Rp 180.000" onclick="selectPriceItem(this, event)" style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;">
+                                <span style="color: #aaa;">Lifetime</span>
+                                <span style="color: #ffd700; font-weight: bold;">Rp 180.000</span>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-buy" style="flex: 2; padding: 0.5rem !important; font-size: 0.8rem !important;" onclick="openPaymentModal('CHEAT MLBB PANDORA', [{'duration': '7 Day', 'price': 'Rp 60.000'}, {'duration': '30 Day', 'price': 'Rp 100.000'}, {'duration': 'Lifetime', 'price': 'Rp 180.000'}])">Beli Sekarang</button>
+                            <button class="btn-cart" onclick="addToCartFromProduct(this, 'CHEAT MLBB PANDORA')">🛒 Keranjang</button>
+                            <button class="btn-features" onclick="showFeatures('CHEAT MLBB PANDORA', ['Auto Win - Menang otomatis', 'Map Hack - Melihat seluruh peta', 'Lag Hack - Membuat musuh lag', 'Auto Headshot - Headshot otomatis', 'God Mode - Tidak bisa mati', 'Speed Hack - Gerakan lebih cepat', 'Anti Ban - Sistem anti deteksi'])">🔍 Fitur</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instruksi Cara Pembelian -->
+    <section class="purchase-instructions" style="padding: 4rem 0; background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%); border-top: 2px solid rgba(255, 215, 0, 0.3);">
+        <div class="container">
+            <h2 class="instructions-title" style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; font-family: 'Bebas Neue', 'Orbitron', sans-serif; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 3s ease infinite; position: relative;">
+                Cara Pembelian
+            </h2>
+            <div class="instructions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+                <div class="instruction-step" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 2rem; text-align: center; transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div class="step-number" style="width: 60px; height: 60px; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.8rem; font-weight: bold; color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); position: relative; z-index: 1;">
+                        1
+                    </div>
+                    <h3 style="color: #ffd700; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 700; position: relative; z-index: 1;">Pilih Produk</h3>
+                    <p style="color: #aaa; line-height: 1.8; font-size: 0.95rem; position: relative; z-index: 1;">Pilih produk cheat yang ingin Anda beli dari katalog di atas</p>
+                </div>
+                <div class="instruction-step" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 2rem; text-align: center; transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div class="step-number" style="width: 60px; height: 60px; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.8rem; font-weight: bold; color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); position: relative; z-index: 1;">
+                        2
+                    </div>
+                    <h3 style="color: #ffd700; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 700; position: relative; z-index: 1;">Klik Beli Sekarang</h3>
+                    <p style="color: #aaa; line-height: 1.8; font-size: 0.95rem; position: relative; z-index: 1;">Klik tombol "Beli Sekarang" pada produk yang dipilih</p>
+                </div>
+                <div class="instruction-step" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 2rem; text-align: center; transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div class="step-number" style="width: 60px; height: 60px; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.8rem; font-weight: bold; color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); position: relative; z-index: 1;">
+                        3
+                    </div>
+                    <h3 style="color: #ffd700; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 700; position: relative; z-index: 1;">Pilih Paket</h3>
+                    <p style="color: #aaa; line-height: 1.8; font-size: 0.95rem; position: relative; z-index: 1;">Pilih paket durasi yang diinginkan (7 Day, 30 Day, atau Lifetime)</p>
+                </div>
+                <div class="instruction-step" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 2rem; text-align: center; transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div class="step-number" style="width: 60px; height: 60px; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.8rem; font-weight: bold; color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); position: relative; z-index: 1;">
+                        4
+                    </div>
+                    <h3 style="color: #ffd700; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 700; position: relative; z-index: 1;">Isi Formulir</h3>
+                    <p style="color: #aaa; line-height: 1.8; font-size: 0.95rem; position: relative; z-index: 1;">Isi data diri lengkap (Nama, Email, WhatsApp) dan pilih metode pembayaran</p>
+                </div>
+                <div class="instruction-step" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 2rem; text-align: center; transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div class="step-number" style="width: 60px; height: 60px; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.8rem; font-weight: bold; color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); position: relative; z-index: 1;">
+                        5
+                    </div>
+                    <h3 style="color: #ffd700; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 700; position: relative; z-index: 1;">Submit Order</h3>
+                    <p style="color: #aaa; line-height: 1.8; font-size: 0.95rem; position: relative; z-index: 1;">Klik "Lanjutkan Pembayaran" untuk mengirimkan order Anda</p>
+                </div>
+                <div class="instruction-step" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 2rem; text-align: center; transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div class="step-number" style="width: 60px; height: 60px; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.8rem; font-weight: bold; color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); position: relative; z-index: 1;">
+                        6
+                    </div>
+                    <h3 style="color: #ffd700; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 700; position: relative; z-index: 1;">Tunggu Konfirmasi</h3>
+                    <p style="color: #aaa; line-height: 1.8; font-size: 0.95rem; position: relative; z-index: 1;">Tim kami akan menghubungi Anda via WhatsApp untuk konfirmasi dan instruksi pembayaran</p>
+                </div>
+            </div>
+            <div class="instructions-note" style="margin-top: 3rem; padding: 1.5rem; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <p style="color: #ffd700; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">💡 Tips</p>
+                <p style="color: #aaa; line-height: 1.8; font-size: 0.95rem; margin: 0;">Pastikan data yang diisi sudah benar. Setelah submit, tim kami akan menghubungi Anda maksimal 1x24 jam untuk proses selanjutnya.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 TOKOCHEAT.ID. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Pembayaran -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Formulir Pembayaran</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="selected-product">
+                    <h3>Produk: <span id="selectedProduct">-</span></h3>
+                    <p>Paket: <span id="selectedPackage">-</span></p>
+                    <p>Harga: <span id="selectedPrice">-</span></p>
+                </div>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama lengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="nama@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>No. WhatsApp</label>
+                        <input type="tel" placeholder="081234567890" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Metode Pembayaran</label>
+                        <select required>
+                            <option value="">Pilih Metode Pembayaran</option>
+                            <option value="transfer">Transfer Bank</option>
+                            <option value="dana">Dana</option>
+                            <option value="ovo">OVO</option>
+                            <option value="gopay">GoPay</option>
+                            <option value="linkaja">LinkAja</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Lanjutkan Pembayaran</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>Keranjang</h2>
+            <button class="cart-close" id="cartClose">&times;</button>
+        </div>
+        <div class="cart-body">
+            <div class="cart-empty" id="cartEmpty">
+                <div class="cart-empty-icon">🛒</div>
+                <p>Keranjang Anda kosong</p>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span class="cart-total-label">Total:</span>
+                <span class="cart-total-price" id="cartTotalPrice">Rp 0</span>
+            </div>
+            <button class="cart-checkout" id="cartCheckout" disabled>Checkout</button>
+        </div>
+    </div>
+
+    <!-- Features Modal -->
+    <div class="features-overlay" id="featuresOverlay"></div>
+    <div class="features-modal" id="featuresModal">
+        <div class="features-header">
+            <h2 id="featuresProductName">Fitur Produk</h2>
+            <button class="features-close" id="featuresClose">&times;</button>
+        </div>
+        <div class="features-body">
+            <ul class="features-list" id="featuresList"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize cart when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize cart system
+            if (typeof initCart === 'function') {
+                initCart();
+            } else {
+                // Fallback: manual cart initialization
+                const cartIcon = document.getElementById('cartIcon');
+                if (cartIcon) {
+                    cartIcon.style.cursor = 'pointer';
+                    cartIcon.addEventListener('click', function() {
+                        openCart();
+                    });
+                }
+                
+                const cartClose = document.getElementById('cartClose');
+                if (cartClose) {
+                    cartClose.addEventListener('click', function() {
+                        closeCart();
+                    });
+                }
+                
+                const cartOverlay = document.getElementById('cartOverlay');
+                if (cartOverlay) {
+                    cartOverlay.addEventListener('click', function() {
+                        closeCart();
+                    });
+                }
+                
+                const cartCheckout = document.getElementById('cartCheckout');
+                if (cartCheckout) {
+                    cartCheckout.addEventListener('click', function() {
+                        checkoutCart();
+                    });
+                }
+                
+                // Update cart badge and render cart
+                updateCartBadge();
+                renderCart();
+            }
+        });
+        
+        // Fallback functions if script.js not loaded
+        function openCart() {
+            const cartModal = document.getElementById('cartModal');
+            const cartOverlay = document.getElementById('cartOverlay');
+            if (cartModal) cartModal.classList.add('active');
+            if (cartOverlay) cartOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            renderCart();
+        }
+        
+        function closeCart() {
+            const cartModal = document.getElementById('cartModal');
+            const cartOverlay = document.getElementById('cartOverlay');
+            if (cartModal) cartModal.classList.remove('active');
+            if (cartOverlay) cartOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                const count = cart.length;
+                badge.textContent = count;
+                if (count === 0) {
+                    badge.classList.add('hidden');
+                } else {
+                    badge.classList.remove('hidden');
+                }
+            }
+        }
+        
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItems = document.getElementById('cartItems');
+            const cartEmpty = document.getElementById('cartEmpty');
+            const cartTotalPrice = document.getElementById('cartTotalPrice');
+            const cartCheckout = document.getElementById('cartCheckout');
+            
+            if (!cartItems) return;
+            
+            if (cart.length === 0) {
+                if (cartEmpty) cartEmpty.style.display = 'block';
+                cartItems.innerHTML = '';
+                if (cartTotalPrice) cartTotalPrice.textContent = 'Rp 0';
+                if (cartCheckout) cartCheckout.disabled = true;
+                return;
+            }
+            
+            if (cartEmpty) cartEmpty.style.display = 'none';
+            if (cartCheckout) cartCheckout.disabled = false;
+            
+            // Calculate total
+            let total = 0;
+            cart.forEach(item => {
+                const price = parseInt(item.price.replace(/[^\d]/g, ''));
+                total += price;
+            });
+            
+            if (cartTotalPrice) {
+                cartTotalPrice.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+            }
+            
+            // Render items
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-header">
+                        <div class="cart-item-name">${item.name}</div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">×</button>
+                    </div>
+                    <div class="cart-item-details">Paket: ${item.package}</div>
+                    <div class="cart-item-price">${item.price}</div>
+                </div>
+            `).join('');
+        }
+        
+        function removeFromCart(itemId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== itemId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+            renderCart();
+        }
+        
+        function checkoutCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('Keranjang kosong!');
+                return;
+            }
+            
+            // Calculate total
+            let total = 0;
+            cart.forEach(item => {
+                const price = parseInt(item.price.replace(/[^\d]/g, ''));
+                total += price;
+            });
+            
+            // Show payment modal
+            const paymentModal = document.getElementById('paymentModal');
+            if (paymentModal) {
+                const selectedProduct = document.getElementById('selectedProduct');
+                if (selectedProduct) {
+                    selectedProduct.textContent = `${cart.length} item(s) di keranjang`;
+                }
+                const selectedPrice = document.getElementById('selectedPrice');
+                if (selectedPrice) {
+                    selectedPrice.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+                }
+                
+                closeCart();
+                paymentModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                alert(`Total: Rp ${total.toLocaleString('id-ID')}\n\nSilakan hubungi admin untuk proses pembayaran.`);
+            }
+        }
+        
+        // Features Modal Functions
+        function showFeatures(productName, features) {
+            const modal = document.getElementById('featuresModal');
+            const overlay = document.getElementById('featuresOverlay');
+            const productNameEl = document.getElementById('featuresProductName');
+            const featuresList = document.getElementById('featuresList');
+
+            productNameEl.textContent = `Fitur ${productName}`;
+            featuresList.innerHTML = '';
+
+            features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+
+            modal.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFeatures() {
+            const modal = document.getElementById('featuresModal');
+            const overlay = document.getElementById('featuresOverlay');
+            modal.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('featuresClose').addEventListener('click', closeFeatures);
+        document.getElementById('featuresOverlay').addEventListener('click', closeFeatures);
+
+        let selectedProduct = '';
+        let selectedPrice = '';
+        let selectedPackage = '';
+
+        function selectPricing(element, productName, price, packageType) {
+            const card = element.closest('.product-card');
+            card.querySelectorAll('.pricing-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedProduct = productName;
+            selectedPrice = price;
+            selectedPackage = packageType;
+        }
+
+        function buyProduct() {
+            if (!selectedProduct || !selectedPrice) {
+                alert('Silakan pilih paket terlebih dahulu!');
+                return;
+            }
+            document.getElementById('selectedProduct').textContent = selectedProduct;
+            document.getElementById('selectedPackage').textContent = selectedPackage;
+            document.getElementById('selectedPrice').textContent = selectedPrice;
+            document.getElementById('paymentModal').classList.add('active');
+        }
+
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('paymentModal').classList.remove('active');
+        });
+
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Tim kami akan menghubungi Anda segera untuk proses pembayaran.');
+            document.getElementById('paymentModal').classList.remove('active');
+            this.reset();
+            document.querySelectorAll('.pricing-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            selectedProduct = '';
+            selectedPrice = '';
+            selectedPackage = '';
+        });
+
+        // Function to select price item
+        function selectPriceItem(element, event) {
+            event.stopPropagation();
+            const card = element.closest('.product-card');
+            if (!card) return;
+            
+            // Remove selected class from all price items in this card
+            const pricingDiv = card.querySelector('.product-pricing');
+            if (pricingDiv) {
+                pricingDiv.querySelectorAll('.price-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+            }
+            
+            // Add selected class to clicked item
+            element.classList.add('selected');
+        }
+
+        function addToCartFromProduct(button) {
+            const card = button.closest('.product-card');
+            if (!card) return;
+            
+            const productName = card.querySelector('h3').textContent;
+            
+            // Check for selected price-item first (new system)
+            const pricingDiv = card.querySelector('.product-pricing');
+            let selectedPriceItem = null;
+            let packageType, price;
+            
+            if (pricingDiv) {
+                selectedPriceItem = pricingDiv.querySelector('.price-item.selected');
+            }
+            
+            if (selectedPriceItem) {
+                // Use selected price-item (new system)
+                packageType = selectedPriceItem.getAttribute('data-duration') || selectedPriceItem.querySelector('span:first-child').textContent.trim();
+                price = selectedPriceItem.getAttribute('data-price') || selectedPriceItem.querySelector('span:last-child').textContent.trim();
+            } else {
+                // Check for old pricing-option system
+                const selectedOption = card.querySelector('.pricing-option.selected');
+                if (selectedOption) {
+                    packageType = selectedOption.querySelector('.pricing-text').textContent;
+                    price = selectedOption.querySelector('.pricing-price').textContent;
+                } else {
+                    // No package selected
+                    alert('⚠️ Silakan pilih paket harga terlebih dahulu!\n\nKlik pada salah satu paket (7 Day, 30 Day, atau Lifetime) sebelum menambahkan ke keranjang.');
+                    return;
+                }
+            }
+            
+            if (typeof addToCart === 'function') {
+                addToCart(productName, packageType, price);
+                // Remove selected class after adding to cart
+                if (selectedPriceItem) {
+                    selectedPriceItem.classList.remove('selected');
+                }
+            } else {
+                // Fallback: add directly to localStorage
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const item = {
+                    id: Date.now(),
+                    name: productName,
+                    package: packageType,
+                    price: price,
+                    timestamp: new Date().toISOString()
+                };
+                cart.push(item);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Update cart badge
+                const badge = document.getElementById('cartBadge');
+                if (badge) {
+                    badge.textContent = cart.length;
+                    badge.classList.remove('hidden');
+                }
+                
+                // Remove selected class after adding to cart
+                if (selectedPriceItem) {
+                    selectedPriceItem.classList.remove('selected');
+                }
+                
+                // Show notification
+                alert('✅ Produk ditambahkan ke keranjang!');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -3,166 +3,1197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAZOR CHEAT MARKET - Belanja Online Terpercaya</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>TOKOCHEAT.ID - Cheat Game Terpercaya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn-hero {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-hero:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-hero:active {
+            transform: translateY(-2px);
+        }
+
+        .btn-game {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            border: 2px solid #ffd700;
+        }
+
+        .btn-game:hover {
+            background: linear-gradient(45deg, #ffed4e, #ffd700);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .hero-description {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero-about-text {
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-align: center;
+            margin: 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%),
+                url('WALLPAPER.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .hero-background {
+                background-attachment: scroll;
+            }
+
+            body {
+                overflow: hidden;
+                height: 100vh;
+            }
+
+            html {
+                overflow: hidden;
+            }
+        }
+
+        .hero-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .hero-logo {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .hero-logo:hover {
+            transform: scale(1.1);
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', 'Rajdhani', 'Arial Black', sans-serif;
+            font-weight: 900;
+            font-size: 4rem;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 25%, #ffd700 50%, #ffed4e 75%, #ffd700 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.5),
+                0 0 20px rgba(255, 215, 0, 0.3),
+                0 0 30px rgba(255, 215, 0, 0.2),
+                0 4px 8px rgba(0, 0, 0, 0.5);
+            animation: gradient-shift 3s ease infinite, glow-pulse 2s ease-in-out infinite;
+            position: relative;
+            margin: 0;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 100% center;
+            }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4)) drop-shadow(0 0 25px rgba(255, 215, 0, 0.2));
+            }
+            50% {
+                filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 35px rgba(255, 215, 0, 0.3));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .btn-hero {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                gap: 1rem;
+            }
+
+            .hero-logo {
+                height: 60px;
+            }
+
+            .hero-description {
+                margin: 1.5rem auto;
+                padding: 0 1.5rem;
+            }
+
+            .hero-about-text {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .hero-logo-container {
+                gap: 0.8rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+                letter-spacing: 3px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-logo {
+                height: 50px;
+            }
+
+            .hero-description {
+                margin: 1rem auto;
+                padding: 0 1rem;
+            }
+
+            .hero-about-text {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+
+            .hero-logo-container {
+                gap: 0.5rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* Dashboard Styles */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .dashboard-btn {
+            padding: 0.8rem 1rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .dashboard-btn .hamburger-line {
+            width: 24px;
+            height: 3px;
+            background: #000;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-btn:hover {
+            background: linear-gradient(45deg, #ffed4e, #ffd700);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .dashboard-btn:hover .hamburger-line {
+            background: #000;
+        }
+
+        .dashboard-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2998;
+            backdrop-filter: blur(3px);
+            transition: opacity 0.3s ease;
+        }
+
+        .dashboard-overlay.active {
+            display: block;
+        }
+
+        .dashboard-sidebar {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            border-right: 2px solid rgba(255, 215, 0, 0.15);
+            z-index: 2999;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            box-shadow: 
+                4px 0 30px rgba(0, 0, 0, 0.8),
+                inset -1px 0 0 rgba(255, 215, 0, 0.1);
+        }
+
+        .dashboard-sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% auto;
+            animation: gradient-shift 3s linear infinite;
+        }
+
+        .dashboard-sidebar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .dashboard-sidebar.active {
+            left: 0;
+        }
+
+        .dashboard-sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(255, 215, 0, 0.03) 100%);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dashboard-sidebar-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+        }
+
+        .dashboard-sidebar-header h2 {
+            color: #ffd700;
+            font-size: 1.6rem;
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dashboard-close {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 6px;
+            color: #ffd700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            padding: 0;
+            font-weight: bold;
+        }
+
+        .dashboard-close:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            color: #ffed4e;
+        }
+
+        .dashboard-nav {
+            padding: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .dashboard-link {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.1rem 1.5rem;
+            margin: 0 0.75rem;
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .dashboard-link:hover::before {
+            width: 100%;
+        }
+
+        .dashboard-link:hover {
+            background: rgba(255, 215, 0, 0.08);
+            color: #ffd700;
+            border-left-color: #ffd700;
+            transform: translateX(5px);
+            box-shadow: 
+                inset 0 0 20px rgba(255, 215, 0, 0.05),
+                0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard-link.active {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+            color: #ffd700;
+            border-left-color: #ffd700;
+            box-shadow: 
+                inset 0 0 30px rgba(255, 215, 0, 0.1),
+                0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dashboard-link.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .dashboard-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+            transition: all 0.3s;
+        }
+
+        .dashboard-link:hover .dashboard-icon svg,
+        .dashboard-link.active .dashboard-icon svg {
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+        }
+
+        .dashboard-text {
+            flex: 1;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-link.active .dashboard-text {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        body.dashboard-open {
+            overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            .dashboard-sidebar {
+                left: 0 !important;
+            }
+
+            body {
+                padding-left: 280px;
+            }
+
+            .dashboard-close {
+                display: none;
+            }
+
+            .dashboard-overlay {
+                display: none !important;
+            }
+
+            .dashboard-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            body.dashboard-open {
+                overflow: hidden;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-btn {
+                width: 45px;
+                height: 45px;
+                padding: 0.6rem;
+            }
+
+            .dashboard-btn .hamburger-line {
+                width: 20px;
+            }
+
+            .dashboard-sidebar {
+                width: 260px;
+                left: -260px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-btn {
+                width: 40px;
+                height: 40px;
+                padding: 0.5rem;
+            }
+
+            .dashboard-btn .hamburger-line {
+                width: 18px;
+                height: 2px;
+            }
+
+            .dashboard-sidebar {
+                width: 240px;
+                left: -240px;
+            }
+
+            .dashboard-sidebar-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .dashboard-link {
+                padding: 0.9rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            border-top: 2px solid #ffd700;
+            padding: 0.5rem 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .bottom-nav-container {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .bottom-nav-item .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .bottom-nav-item .nav-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bottom-nav-item .nav-text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #aaa;
+            text-align: center;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .bottom-nav-item.active {
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+        }
+
+        .bottom-nav-item.active .nav-icon svg {
+            fill: #ffd700;
+            stroke: #ffd700;
+        }
+
+        .bottom-nav-item.active .nav-icon svg path {
+            fill: none;
+            stroke: #ffd700;
+        }
+
+        .bottom-nav-item.active .nav-text {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .bottom-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #ffd700;
+        }
+
+        .bottom-nav-item:not(.active) .nav-icon svg {
+            fill: #aaa;
+            stroke: #aaa;
+        }
+
+        .bottom-nav-item:not(.active) .nav-icon svg path {
+            fill: none;
+            stroke: #aaa;
+        }
+
+        .bottom-nav-item:not(.active) .nav-text {
+            color: #aaa;
+        }
+
+        .bottom-nav-item.uppercase .nav-text {
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        body {
+            padding-bottom: 70px;
+        }
+
+        @media (max-width: 480px) {
+            .bottom-nav-item .nav-text {
+                font-size: 0.7rem;
+            }
+
+            .bottom-nav-item {
+                padding: 0.5rem 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
-        <nav class="navbar">
-            <div class="nav-brand">
-                <h1><i class="fas fa-dragon"></i> RAZOR CHEAT MARKET</h1>
+        <div class="container">
+            <div class="logo">
+                <img src="TKC.png" alt="TOKOCHEAT.ID Logo">
+                <h1>TOKOCHEAT.ID</h1>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Beranda</a></li>
-                <li><a href="#products" class="nav-link">Produk</a></li>
-                <li><a href="#about" class="nav-link">Tentang</a></li>
-                <li><a href="#contact" class="nav-link">Kontak</a></li>
-            </ul>
-            <div class="nav-cart">
-                <button class="cart-btn" onclick="toggleCart()">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count" id="cartCount">0</span>
+            <div class="header-actions">
+                <button class="dashboard-btn" id="dashboardBtn">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
                 </button>
+                <div class="cart-icon" id="cartIcon">
+                    🛒
+                    <span class="cart-badge hidden" id="cartBadge">0</span>
+                </div>
             </div>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Selamat Datang di RAZOR CHEAT MARKET</h1>
-                <p>Temukan cheat berkualitas dengan harga terbaik</p>
-                <button class="cta-btn" onclick="scrollToProducts()">Lihat Produk</button>
+    <section class="hero" id="home">
+        <div class="hero-background" id="heroBackground"></div>
+        <div class="hero-content">
+            <div class="hero-logo-container">
+                <img src="TKC.png" alt="TOKOCHEAT.ID Logo" class="hero-logo">
+                <h1 class="hero-title">TOKOCHEAT.ID</h1>
             </div>
-        </section>
-
-        <!-- Products Section -->
-        <section id="products" class="products">
-            <div class="container">
-                <h2>Produk Unggulan</h2>
-                <div class="products-grid" id="productsGrid">
-                    <!-- Products will be loaded here -->
-                </div>
+            <p class="hero-subtitle">Premium Game Cheats & Mods</p>
+            <div class="hero-buttons">
+                <a href="index3.html" class="btn-hero btn-game">🎮 PILIH GAME</a>
             </div>
-        </section>
+            <div class="hero-description">
+                <p class="hero-about-text">
+                    TOKOCHEAT.ID adalah platform terpercaya untuk cheat game premium dengan kualitas terjamin. 
+                    Kami menyediakan berbagai macam cheat untuk game-game populer seperti Mobile Legends, Free Fire, 
+                    PUBG Mobile, Roblox, dan Delta Force dengan update rutin dan dukungan pelanggan 24/7. 
+                    Dapatkan pengalaman gaming yang lebih baik dengan cheat premium kami yang 100% undetected.
+                </p>
+            </div>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <h2>Tentang RAZOR CHEAT MARKET</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>RAZOR CHEAT MARKET adalah platform belanja online terpercaya yang menyediakan berbagai cheat berkualitas dengan harga terjangkau. Kami berkomitmen memberikan pengalaman berbelanja yang nyaman dan aman.</p>
-                        <div class="features">
-                            <div class="feature">
-                                <i class="fas fa-shield-alt"></i>
-                                <h3>Pembayaran Aman</h3>
-                                <p>Transaksi aman dengan berbagai metode pembayaran</p>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-headset"></i>
-                                <h3>Layanan 24/7</h3>
-                                <p>Dukungan pelanggan siap membantu Anda</p>
-                            </div>
-                        </div>
+    <section class="about fade-in" id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Kami</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    TOKOCHEAT.ID adalah platform terpercaya untuk cheat game premium dengan kualitas terjamin.
+                    Kami menyediakan berbagai macam cheat untuk game-game populer dengan update rutin dan
+                    dukungan pelanggan 24/7.
+                </p>
+                <div class="features">
+                    <div class="feature fade-in">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>100% Undetected</h3>
+                        <p>Cheat kami menggunakan teknologi terbaru untuk menghindari deteksi</p>
+                    </div>
+                    <div class="feature fade-in">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Update Rutin</h3>
+                        <p>Dapatkan update terbaru setiap kali game memiliki patch baru</p>
+                    </div>
+                    <div class="feature fade-in">
+                        <div class="feature-icon">💬</div>
+                        <h3>Support 24/7</h3>
+                        <p>Tim support kami siap membantu Anda kapan saja</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2>    ORDER? SILAHKAN HUBUNGI DISINI</h2>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <p>+62 838-5722-8661</p>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p>info@razorxiter26.com</p>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Kota Semarang</p>
-                        </div>
+
+    <!-- FAQ Section -->
+    <section class="faq fade-in" id="faq">
+        <div class="container">
+            <h2 class="section-title">Pertanyaan Umum (FAQ)</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apakah cheat ini aman digunakan?</h3>
+                        <span class="faq-icon">+</span>
                     </div>
-                    <form class="contact-form">
-                        <input type="text" placeholder="Nama Lengkap" required>
-                        <input type="email" placeholder="Email" required>
-                        <textarea placeholder="Pesan" rows="5" required></textarea>
-                        <button type="submit" class="submit-btn">Kirim Pesan</button>
-                    </form>
+                    <div class="faq-answer">
+                        <p>Ya, semua cheat kami menggunakan teknologi terbaru dan telah diuji untuk menghindari deteksi. Kami juga memberikan update rutin setiap kali game memiliki patch baru.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bagaimana cara pembayaran?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Kami menerima pembayaran melalui Transfer Bank, Dana, OVO, GoPay, dan LinkAja. Setelah pembayaran dikonfirmasi, Anda akan menerima kode aktivasi melalui email atau WhatsApp.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Berapa lama masa aktif cheat?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Kami menyediakan paket 7 hari, 30 hari, dan Lifetime. Paket Lifetime memberikan akses selamanya dengan update rutin.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apakah ada garansi?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, kami memberikan garansi 100% uang kembali jika cheat tidak berfungsi atau terdeteksi dalam 7 hari pertama setelah pembelian.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bagaimana cara mendapatkan support?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tim support kami siap membantu 24/7 melalui WhatsApp, Telegram, atau email. Respon biasanya dalam waktu kurang dari 1 jam.</p>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <!-- Shopping Cart Sidebar -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>ORDER</h3>
-            <button class="close-cart" onclick="toggleCart()">
-                <i class="fas fa-times"></i>
-            </button>
         </div>
-        <div class="cart-items" id="cartItems">
-            <!-- Cart items will be displayed here -->
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span class="total-amount" id="cartTotal">Rp 0</span>
-            </div>
-            <button class="checkout-btn" onclick="checkout()">ORDER SEKARANG</button>
-        </div>
-    </div>
+    </section>
 
-    <!-- Cart Overlay -->
-    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>RAZOR CHEAT MARKET</h3>
-                    <p>Toko online terpercaya dengan cheat berkualitas</p>
+                    <h3>TOKOCHEAT.ID</h3>
+                    <p>Platform terpercaya untuk cheat game premium dengan kualitas terjamin.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="WhatsApp">📱</a>
+                        <a href="#" class="social-link" title="Telegram">✈️</a>
+                        <a href="#" class="social-link" title="Instagram">📷</a>
+                        <a href="#" class="social-link" title="Facebook">👥</a>
+                    </div>
                 </div>
                 <div class="footer-section">
-                    <h4>Layanan</h4>
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#products">Produk</a></li>
-                        <li><a href="#about">Tentang Kami</a></li>
-                        <li><a href="#contact">Kontak</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="index3.html">Produk</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="index2.html#testimonials">Testimoni</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Ikuti Kami</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li>📧 support@tokocheat.id</li>
+                        <li>📱 +62 812-3456-7890</li>
+                        <li>✈️ @tokocheat_support</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Live Stats</h4>
+                    <div class="live-stats">
+                        <p>👥 Pengunjung: <span id="visitorCount">1,234</span></p>
+                        <p>🛒 Total Order: <span id="orderCount">567</span></p>
+                        <p>⭐ Rating: <span>4.9/5</span></p>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 RAZOR CHEAT MARKET. Semua hak dilindungi.</p>
+                <p>&copy; 2024 TOKOCHEAT.ID. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Modal Pembayaran -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Formulir Pembayaran</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="selected-product">
+                    <h3>Produk: <span id="selectedProduct">-</span></h3>
+                    <p>Harga: <span id="selectedPrice">-</span></p>
+                </div>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama lengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="nama@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>No. WhatsApp</label>
+                        <input type="tel" placeholder="081234567890" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Metode Pembayaran</label>
+                        <select required>
+                            <option value="">Pilih Metode Pembayaran</option>
+                            <option value="transfer">Transfer Bank</option>
+                            <option value="dana">Dana</option>
+                            <option value="ovo">OVO</option>
+                            <option value="gopay">GoPay</option>
+                            <option value="linkaja">LinkAja</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Lanjutkan Pembayaran</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>Keranjang</h2>
+            <button class="cart-close" id="cartClose">&times;</button>
+        </div>
+        <div class="cart-body">
+            <div class="cart-empty" id="cartEmpty">
+                <div class="cart-empty-icon">🛒</div>
+                <p>Keranjang Anda kosong</p>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span class="cart-total-label">Total:</span>
+                <span class="cart-total-price" id="cartTotalPrice">Rp 0</span>
+            </div>
+            <button class="cart-checkout" id="cartCheckout" disabled>Checkout</button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Kembali ke atas">
+        <span>↑</span>
+    </button>
+
+    <!-- Promo Banner -->
+    <div class="promo-banner" id="promoBanner">
+        <div class="promo-content">
+            <span class="promo-icon">🎉</span>
+            <span class="promo-text">PROMO SPESIAL! Diskon hingga 50% untuk pembelian pertama</span>
+            <button class="promo-close" id="promoClose">&times;</button>
+        </div>
+    </div>
+
+    <!-- Dashboard Sidebar -->
+    <div class="dashboard-overlay" id="dashboardOverlay"></div>
+    <div class="dashboard-sidebar" id="dashboardSidebar">
+        <div class="dashboard-sidebar-header">
+            <h2>TOKOCHEAT.ID</h2>
+            <button class="dashboard-close" id="dashboardClose">&times;</button>
+        </div>
+        <nav class="dashboard-nav">
+            <a href="#home" class="dashboard-link active" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Home</span>
+            </a>
+            <a href="index3.html" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Produk</span>
+            </a>
+            <a href="#about" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Tentang</span>
+            </a>
+            <a href="index2.html#testimonials" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Testimoni</span>
+            </a>
+            <a href="index10.html" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.59 13.41L13.42 20.58C13.2343 20.767 13.0137 20.9163 12.7709 21.0211C12.5281 21.1258 12.2678 21.1836 12.005 21.1916C11.7422 21.1996 11.479 21.1577 11.2296 21.0678C10.9802 20.9779 10.7491 20.8415 10.55 20.66L3.36 13.47C2.97875 13.089 2.78547 12.5622 2.82545 12.0312C2.86543 11.5002 3.13528 11.0014 3.58 10.66L9.88 5.35C10.061 5.14995 10.2809 5.01228 10.5215 4.93706C10.7621 4.86184 11.0167 4.85118 11.2627 4.90596C11.5087 4.96074 11.7392 5.07945 11.936 5.253L18.15 10.94C18.3406 11.1201 18.4914 11.3372 18.5934 11.5779C18.6954 11.8186 18.7462 12.0778 18.7425 12.3389C18.7388 12.6 18.6806 12.8575 18.5716 13.0954C18.4626 13.3333 18.3052 13.5467 18.11 13.72L12.36 18.83C12.1552 19.0101 11.9151 19.1444 11.6541 19.2247C11.3931 19.305 11.1167 19.3293 10.845 19.2957C10.5733 19.2621 10.3121 19.1714 10.0781 19.0291C9.84408 18.8868 9.64275 18.6962 9.487 18.47L7.1 15.28" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="18" cy="6" r="2" fill="currentColor"/>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Promo</span>
+            </a>
+            <a href="index11.html" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8C20.9996 7.64928 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64928 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.27 6.96L12 12.01L20.73 6.96" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 22.08V12" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Berita</span>
+            </a>
+            <a href="index9.html" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Riwayat Order</span>
+            </a>
+        </nav>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        // Dashboard Functions
+        function openDashboard() {
+            const sidebar = document.getElementById('dashboardSidebar');
+            const overlay = document.getElementById('dashboardOverlay');
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+            document.body.classList.add('dashboard-open');
+        }
+
+        function closeDashboard() {
+            const sidebar = document.getElementById('dashboardSidebar');
+            const overlay = document.getElementById('dashboardOverlay');
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('dashboard-open');
+        }
+
+        // Initialize dashboard
+        const dashboardBtn = document.getElementById('dashboardBtn');
+        const dashboardClose = document.getElementById('dashboardClose');
+        const dashboardOverlay = document.getElementById('dashboardOverlay');
+
+        if (dashboardBtn) {
+            dashboardBtn.addEventListener('click', openDashboard);
+        }
+
+        if (dashboardClose) {
+            dashboardClose.addEventListener('click', closeDashboard);
+        }
+
+        if (dashboardOverlay) {
+            dashboardOverlay.addEventListener('click', closeDashboard);
+        }
+
+        // Auto-open on desktop
+        function checkDesktopDashboard() {
+            const sidebar = document.getElementById('dashboardSidebar');
+            if (window.innerWidth >= 1024) {
+                if (sidebar) {
+                    sidebar.classList.add('active');
+                }
+            } else {
+                if (sidebar) {
+                    sidebar.classList.remove('active');
+                }
+            }
+        }
+
+        // Check on load
+        checkDesktopDashboard();
+
+        // Check on resize
+        window.addEventListener('resize', checkDesktopDashboard);
+
+        // Set active link based on current page
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+        const links = document.querySelectorAll('.dashboard-link');
+        
+        links.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (currentHash && href.includes(currentHash)) {
+                link.classList.add('active');
+            } else if (!currentHash && href === '#home') {
+                link.classList.add('active');
+            } else if (currentPath.includes('index3.html') && href.includes('index3.html')) {
+                link.classList.add('active');
+            } else if (currentPath.includes('index2.html') && href.includes('index2.html')) {
+                link.classList.add('active');
+            } else if (currentPath.includes('index9.html') && href.includes('index9.html')) {
+                link.classList.add('active');
+            } else if (currentPath.includes('index10.html') && href.includes('index10.html')) {
+                link.classList.add('active');
+            } else if (currentPath.includes('index11.html') && href.includes('index11.html')) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-container">
+            <a href="index.html" class="bottom-nav-item active" id="navHome">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">Home</span>
+            </a>
+            <a href="index2.html" class="bottom-nav-item uppercase" id="navTestimoni">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">TESTIMONI</span>
+            </a>
+            <a href="index10.html" class="bottom-nav-item" id="navPromo">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.59 13.41L13.42 20.58C13.2343 20.767 13.0137 20.9163 12.7709 21.0211C12.5281 21.1258 12.2678 21.1836 12.005 21.1916C11.7422 21.1996 11.479 21.1577 11.2296 21.0678C10.9802 20.9779 10.7491 20.8415 10.55 20.66L3.36 13.47C2.97875 13.089 2.78547 12.5622 2.82545 12.0312C2.86543 11.5002 3.13528 11.0014 3.58 10.66L9.88 5.35C10.061 5.14995 10.2809 5.01228 10.5215 4.93706C10.7621 4.86184 11.0167 4.85118 11.2627 4.90596C11.5087 4.96074 11.7392 5.07945 11.936 5.253L18.15 10.94C18.3406 11.1201 18.4914 11.3372 18.5934 11.5779C18.6954 11.8186 18.7462 12.0778 18.7425 12.3389C18.7388 12.6 18.6806 12.8575 18.5716 13.0954C18.4626 13.3333 18.3052 13.5467 18.11 13.72L12.36 18.83C12.1552 19.0101 11.9151 19.1444 11.6541 19.2247C11.3931 19.305 11.1167 19.3293 10.845 19.2957C10.5733 19.2621 10.3121 19.1714 10.0781 19.0291C9.84408 18.8868 9.64275 18.6962 9.487 18.47L7.1 15.28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="18" cy="6" r="2" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="nav-text">Promo</span>
+            </a>
+            <a href="index11.html" class="bottom-nav-item uppercase" id="navBerita">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V8C20.9996 7.64928 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64928 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.27 6.96L12 12.01L20.73 6.96" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 22.08V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">BERITA</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Set active navigation item based on current page
+        const currentPath = window.location.pathname;
+        const navItems = document.querySelectorAll('.bottom-nav-item');
+        
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            const href = item.getAttribute('href');
+            if (currentPath.includes(href) || (currentPath.includes('index.html') && href === 'index.html')) {
+                item.classList.add('active');
+            }
+        });
+    </script>
 </body>
 </html>

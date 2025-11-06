@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita - TOKOCHEAT.ID</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #000000;
+            color: #e0e0e0;
+            padding-bottom: 70px;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .berita-section {
+            padding: 4rem 0;
+            min-height: 80vh;
+        }
+
+        .berita-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .berita-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            font-family: 'Bebas Neue', 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 100% center;
+            }
+        }
+
+        .berita-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .berita-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .berita-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .berita-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .berita-card:hover::before {
+            opacity: 1;
+        }
+
+        .berita-date {
+            color: #ffd700;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .berita-card h3 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .berita-card p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .berita-read-more {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .berita-read-more:hover {
+            color: #ffed4e;
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            border-top: 2px solid #ffd700;
+            padding: 0.5rem 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .bottom-nav-container {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .bottom-nav-item .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .bottom-nav-item .nav-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bottom-nav-item .nav-text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #aaa;
+            text-align: center;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .bottom-nav-item.active {
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+        }
+
+        .bottom-nav-item.active .nav-icon svg {
+            fill: #ffd700;
+            stroke: #ffd700;
+        }
+
+        .bottom-nav-item.active .nav-icon svg path {
+            fill: none;
+            stroke: #ffd700;
+        }
+
+        .bottom-nav-item.active .nav-text {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .bottom-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #ffd700;
+        }
+
+        .bottom-nav-item:not(.active) .nav-icon svg {
+            fill: #aaa;
+            stroke: #aaa;
+        }
+
+        .bottom-nav-item:not(.active) .nav-icon svg path {
+            fill: none;
+            stroke: #aaa;
+        }
+
+        .bottom-nav-item:not(.active) .nav-text {
+            color: #aaa;
+        }
+
+        .bottom-nav-item.uppercase .nav-text {
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .berita-title {
+                font-size: 2rem;
+            }
+
+            .berita-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .berita-title {
+                font-size: 1.5rem;
+            }
+
+            .bottom-nav-item .nav-text {
+                font-size: 0.7rem;
+            }
+
+            .bottom-nav-item {
+                padding: 0.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="TKC.png" alt="TOKOCHEAT.ID Logo">
+                <h1>TOKOCHEAT.ID</h1>
+            </div>
+        </div>
+    </header>
+
+    <section class="berita-section">
+        <div class="berita-container">
+            <h1 class="berita-title">Berita Terkini</h1>
+            <div class="berita-grid">
+                <div class="berita-card">
+                    <div class="berita-date">15 Desember 2024</div>
+                    <h3>Update Cheat Terbaru</h3>
+                    <p>Kami telah merilis update terbaru untuk semua cheat premium dengan fitur-fitur baru yang lebih canggih dan sistem anti-ban yang lebih kuat.</p>
+                    <a href="#" class="berita-read-more">Baca Selengkapnya →</a>
+                </div>
+                <div class="berita-card">
+                    <div class="berita-date">10 Desember 2024</div>
+                    <h3>Maintenance Server</h3>
+                    <p>Server akan melakukan maintenance pada tanggal 20 Desember 2024 pukul 00:00 - 06:00 WIB. Mohon maaf atas ketidaknyamanannya.</p>
+                    <a href="#" class="berita-read-more">Baca Selengkapnya →</a>
+                </div>
+                <div class="berita-card">
+                    <div class="berita-date">5 Desember 2024</div>
+                    <h3>Cheat Baru Tersedia</h3>
+                    <p>Cheat baru untuk game populer telah tersedia! Dapatkan akses eksklusif dengan harga spesial untuk pengguna baru.</p>
+                    <a href="#" class="berita-read-more">Baca Selengkapnya →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-container">
+            <a href="index.html" class="bottom-nav-item" id="navHome">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">Home</span>
+            </a>
+            <a href="index2.html" class="bottom-nav-item uppercase" id="navTestimoni">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">TESTIMONI</span>
+            </a>
+            <a href="index10.html" class="bottom-nav-item" id="navPromo">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.59 13.41L13.42 20.58C13.2343 20.767 13.0137 20.9163 12.7709 21.0211C12.5281 21.1258 12.2678 21.1836 12.005 21.1916C11.7422 21.1996 11.479 21.1577 11.2296 21.0678C10.9802 20.9779 10.7491 20.8415 10.55 20.66L3.36 13.47C2.97875 13.089 2.78547 12.5622 2.82545 12.0312C2.86543 11.5002 3.13528 11.0014 3.58 10.66L9.88 5.35C10.061 5.14995 10.2809 5.01228 10.5215 4.93706C10.7621 4.86184 11.0167 4.85118 11.2627 4.90596C11.5087 4.96074 11.7392 5.07945 11.936 5.253L18.15 10.94C18.3406 11.1201 18.4914 11.3372 18.5934 11.5779C18.6954 11.8186 18.7462 12.0778 18.7425 12.3389C18.7388 12.6 18.6806 12.8575 18.5716 13.0954C18.4626 13.3333 18.3052 13.5467 18.11 13.72L12.36 18.83C12.1552 19.0101 11.9151 19.1444 11.6541 19.2247C11.3931 19.305 11.1167 19.3293 10.845 19.2957C10.5733 19.2621 10.3121 19.1714 10.0781 19.0291C9.84408 18.8868 9.64275 18.6962 9.487 18.47L7.1 15.28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="18" cy="6" r="2" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="nav-text">Promo</span>
+            </a>
+            <a href="index11.html" class="bottom-nav-item active uppercase" id="navBerita">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V8C20.9996 7.64928 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64928 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.27 6.96L12 12.01L20.73 6.96" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 22.08V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">BERITA</span>
+            </a>
+        </div>
+    </nav>
+</body>
+</html>
+

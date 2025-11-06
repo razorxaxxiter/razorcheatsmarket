@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimoni Pelanggan - TOKOCHEAT.ID</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Dashboard Styles */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .dashboard-btn {
+            padding: 0.8rem 1rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .dashboard-btn .hamburger-line {
+            width: 24px;
+            height: 3px;
+            background: #000;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-btn:hover {
+            background: linear-gradient(45deg, #ffed4e, #ffd700);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .dashboard-btn:hover .hamburger-line {
+            background: #000;
+        }
+
+        .dashboard-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2998;
+            backdrop-filter: blur(3px);
+            transition: opacity 0.3s ease;
+        }
+
+        .dashboard-overlay.active {
+            display: block;
+        }
+
+        .dashboard-sidebar {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            border-right: 2px solid rgba(255, 215, 0, 0.15);
+            z-index: 2999;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            box-shadow: 
+                4px 0 30px rgba(0, 0, 0, 0.8),
+                inset -1px 0 0 rgba(255, 215, 0, 0.1);
+        }
+
+        .dashboard-sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% auto;
+            animation: gradient-shift 3s linear infinite;
+        }
+
+        .dashboard-sidebar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .dashboard-sidebar.active {
+            left: 0;
+        }
+
+        .dashboard-sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(255, 215, 0, 0.03) 100%);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dashboard-sidebar-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+        }
+
+        .dashboard-sidebar-header h2 {
+            color: #ffd700;
+            font-size: 1.6rem;
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dashboard-close {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 6px;
+            color: #ffd700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            padding: 0;
+            font-weight: bold;
+        }
+
+        .dashboard-close:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            color: #ffed4e;
+        }
+
+        .dashboard-nav {
+            padding: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .dashboard-link {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.1rem 1.5rem;
+            margin: 0 0.75rem;
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .dashboard-link:hover::before {
+            width: 100%;
+        }
+
+        .dashboard-link:hover {
+            background: rgba(255, 215, 0, 0.08);
+            color: #ffd700;
+            border-left-color: #ffd700;
+            transform: translateX(5px);
+            box-shadow: 
+                inset 0 0 20px rgba(255, 215, 0, 0.05),
+                0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard-link.active {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+            color: #ffd700;
+            border-left-color: #ffd700;
+            box-shadow: 
+                inset 0 0 30px rgba(255, 215, 0, 0.1),
+                0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dashboard-link.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .dashboard-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+            transition: all 0.3s;
+        }
+
+        .dashboard-link:hover .dashboard-icon svg,
+        .dashboard-link.active .dashboard-icon svg {
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+        }
+
+        .dashboard-text {
+            flex: 1;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-link.active .dashboard-text {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        body.dashboard-open {
+            overflow: hidden;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 100% center;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .dashboard-sidebar {
+                left: 0 !important;
+            }
+
+            body {
+                padding-left: 280px;
+            }
+
+            .dashboard-close {
+                display: none;
+            }
+
+            .dashboard-overlay {
+                display: none !important;
+            }
+
+            .dashboard-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            body.dashboard-open {
+                overflow: hidden;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-btn {
+                width: 45px;
+                height: 45px;
+                padding: 0.6rem;
+            }
+
+            .dashboard-btn .hamburger-line {
+                width: 20px;
+            }
+
+            .dashboard-sidebar {
+                width: 260px;
+                left: -260px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-btn {
+                width: 40px;
+                height: 40px;
+                padding: 0.5rem;
+            }
+
+            .dashboard-btn .hamburger-line {
+                width: 18px;
+                height: 2px;
+            }
+
+            .dashboard-sidebar {
+                width: 240px;
+                left: -240px;
+            }
+
+            .dashboard-sidebar-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .dashboard-link {
+                padding: 0.9rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            border-top: 2px solid #ffd700;
+            padding: 0.5rem 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .bottom-nav-container {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .bottom-nav-item .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .bottom-nav-item .nav-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bottom-nav-item .nav-text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #aaa;
+            text-align: center;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .bottom-nav-item.active {
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+        }
+
+        .bottom-nav-item.active .nav-icon svg {
+            fill: #ffd700;
+            stroke: #ffd700;
+        }
+
+        .bottom-nav-item.active .nav-icon svg path {
+            fill: none;
+            stroke: #ffd700;
+        }
+
+        .bottom-nav-item.active .nav-text {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .bottom-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #ffd700;
+        }
+
+        .bottom-nav-item:not(.active) .nav-icon svg {
+            fill: #aaa;
+            stroke: #aaa;
+        }
+
+        .bottom-nav-item:not(.active) .nav-icon svg path {
+            fill: none;
+            stroke: #aaa;
+        }
+
+        .bottom-nav-item:not(.active) .nav-text {
+            color: #aaa;
+        }
+
+        .bottom-nav-item.uppercase .nav-text {
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        body {
+            padding-bottom: 70px;
+        }
+
+        @media (max-width: 480px) {
+            .bottom-nav-item .nav-text {
+                font-size: 0.7rem;
+            }
+
+            .bottom-nav-item {
+                padding: 0.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="TKC.png" alt="TOKOCHEAT.ID Logo">
+                <h1>TOKOCHEAT.ID</h1>
+            </div>
+            <div class="header-actions">
+                <button class="dashboard-btn" id="dashboardBtn">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Testimoni Pelanggan</h2>
+            <div class="testimonial-alert" style="background: #ffefc1; color: #8a6d3b; padding: 15px 20px; border-radius: 6px; margin-bottom: 20px; border: 1px solid #ffe082; font-weight: bold;">
+                <span>⚠️ Hanya pelanggan yang SUDAH MEMBELI paket cheat yang dapat memberikan komentar/testimoni di sini.</span>
+        </div>
+            <p class="testimonials-subtitle">Dengarkan pengalaman pelanggan kami yang puas dengan layanan TOKOCHEAT.ID</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Andi Pratama</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">2 jam lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Cheat PUBG Mobile Pro-nya sangat bagus! Aimbot-nya sangat akurat dan tidak pernah ketahuan. 
+                        Sudah 3 bulan pakai dan account masih aman. Pelayanannya juga cepat banget!"
+                    </p>
+                    <img src="TESTI PUBG/PBG.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Siti Nurhaliza</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">1 hari lalu</span>
+                    </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Free Fire Elite-nya mantap! ESP dan No Damage-nya bekerja sempurna. 
+                        Support 24/7 juga responsif banget. Recommended!"
+                    </p>
+                    <img src="TESTI FF/FF1.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Budi Santoso</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">4 hari lalu</span>
+                    </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "MLBB Premium cukup membantu! Auto Win-nya efektif tapi kadang ada bug kecil. Update-nya biasanya tepat waktu. 
+                        Harga terjangkau untuk fitur yang ditawarkan."
+                    </p>
+                    <img src="TESTI ML/ML1.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Rina Wati</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">7 hari lalu</span>
+                    </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Genshin Impact cheat-nya luar biasa! Unlimited Resin dan Auto Farm sangat membantu. 
+                        Tidak perlu grind manual lagi. Terima kasih TOKOCHEAT.ID!"
+                    </p>
+                    <img src="TESTI ROBLOX/RBX1.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Dedi Kurniawan</h4>
+                            <p>DELTAFORCE PLAYER</p>
+                            <span class="testimonial-time">1 bulan lalu</span>
+                    </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Call of Duty Mobile cheat-nya cukup bagus! Aimbot dan Wallhack bekerja dengan baik, tapi kadang ada sedikit lag. 
+                        Performa secara keseluruhan masih oke."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Maya Sari</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">6 hari lalu</span>
+                    </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Clash of Clans cheat-nya lumayan membantu. Unlimited Gems dan Resources bekerja, tapi kadang ada masalah dengan update. 
+                        Pembayaran mudah tapi support agak lambat merespons."
+                    </p>
+                    <img src="TESTI ROBLOX/RBX2.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Fajar Ramadhan</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">1 minggu lalu</span>
+                    </div>
+                </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+            </div>
+                    <p class="testimonial-text">
+                        "PUBG Mobile Pro benar-benar game changer! Aimbot-nya sangat presisi dan wallhack membantu banget untuk tactical play. 
+                        Sudah 4 bulan pakai tanpa masalah. Admin juga ramah dan fast response!"
+                    </p>
+                    <img src="TESTI PUBG/PBG2.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+        </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Lina Kartika</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">10 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Free Fire Elite cukup bagus! ESP-nya jelas dan no damage membantu survive. 
+                        Update biasanya on time, tapi kadang ada delay 1-2 hari setelah patch baru. Overall masih worth it."
+                    </p>
+                    <img src="TESTI FF/FF2.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Hendra Wijaya</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">8 jam lalu</span>
+                    </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                </div>
+                    <p class="testimonial-text">
+                        "MLBB Premium membantu naik rank! Auto Win dan Map Hack efektif, tapi kadang ada bug kecil yang mengganggu. 
+                        Masih undetected sih, tapi harap lebih stabil lagi."
+                    </p>
+            </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Kartika Dewi</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">12 hari lalu</span>
+        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Genshin Impact cheat-nya lumayan membantu. Unlimited Resin dan Auto Farm bekerja, tapi kadang ada masalah dengan detection. 
+                        Perlu lebih hati-hati saat pakai. Support agak lambat merespons masalah."
+                    </p>
+                    <img src="TESTI ROBLOX/RBBX3.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Teguh Prasetyo</h4>
+                            <p>DELTAFORCE PLAYER</p>
+                            <span class="testimonial-time">3 jam lalu</span>
+            </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Call of Duty Mobile cheat cukup smooth! Aimbot-nya akurat dan speed hack membuat gameplay lebih seru. 
+                        Tapi kadang ada crash kecil. Support team membantu tapi responsnya agak lama."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Wawan Setiawan</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">15 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Clash of Clans cheat membantu! Unlimited Gems membuat upgrade lebih cepat. 
+                        Tapi kadang ada masalah dengan sync data. Proses pembayaran mudah sih."
+                    </p>
+                    <img src="TESTI ROBLOX/RBX4.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Yoga Permana</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">14 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "PUBG Mobile Pro benar-benar worth it! Aimbot headshot rate tinggi banget dan no recoil membuat spray lebih akurat. 
+                        Sudah 5 bulan pakai, account masih aman. Best cheat ever!"
+                    </p>
+                    <img src="TESTI PUBG/PBG2.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Nina Sari</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">6 jam lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Free Fire Elite bagus untuk competitive play! ESP membantu dan no damage efektif. 
+                        Update rutin tapi kadang ada delay. Support cukup responsif. Overall masih recommended."
+                    </p>
+                    <img src="TESTI FF/FF3.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Putra Mahendra</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">9 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "MLBB Premium membantu mencapai Mythic Glory! Auto Win efektif dan lag hack membantu. 
+                        Tapi kadang ada bug yang mengganggu gameplay. Harga masih terjangkau untuk fitur yang ditawarkan."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Sari Indah</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">18 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ROBLOX/RBX5.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Genshin Impact cheat membantu farming! Unlimited Resin membuat domain farming lebih efisien dan Auto Farm membantu. 
+                        Tapi perlu lebih hati-hati karena kadang ada warning dari sistem game."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Rizki Aditya</h4>
+                            <p>DELTAFORCE PLAYER</p>
+                            <span class="testimonial-time">5 jam lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Call of Duty Mobile cheat sangat smooth! Aimbot-nya presisi dan wallhack membantu untuk pre-aim. 
+                        Tidak ada lag atau crash sama sekali. Support team juga sangat membantu. 10/10!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Indra Gunawan</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">20 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ROBLOX/RBX6.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Clash of Clans cheat membantu upgrade base! Unlimited Gems dan Resources mempercepat progress. 
+                        Tapi kadang ada masalah dengan sync. Pembayaran mudah dan aktivasi cepat."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Eko Susanto</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">13 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI PUBG/PBG2.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "PUBG Mobile Pro sangat recommended! Aimbot headshot rate tinggi dan no recoil membuat spray control lebih mudah. 
+                        Sudah 6 bulan pakai tanpa masalah. Best investment untuk gaming!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Udin Santoso</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">1 jam lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI FF/FF4.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Free Fire Elite sangat bagus untuk rank push! ESP membantu untuk positioning dan no damage membuat clutch lebih mudah. 
+                        Update selalu tepat waktu dan support sangat responsif. Highly recommended!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Joko Widodo</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">11 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "MLBB Premium membantu mencapai rank tinggi! Auto Win efektif dan map hack membantu ganking. 
+                        Tapi kadang ada bug yang membuat fitur tidak berfungsi. Update kadang terlambat. Masih undetected sih."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Ahmad Fauzi</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">4 jam lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI FF/FF5.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Free Fire Elite sangat recommended! ESP dan No Damage bekerja sempurna. Sudah 2 bulan pakai tanpa masalah. Support sangat responsif!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Bambang Sutrisno</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">13 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ML/ML5.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "MLBB Premium cukup membantu untuk rank push! Auto Win efektif tapi kadang ada delay. Update biasanya tepat waktu. Harga terjangkau."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Cahyo Pratama</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">16 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI PUBG/PBG5.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "PUBG Mobile Pro luar biasa! Aimbot sangat akurat dan wallhack membantu tactical play. Sudah 3 bulan pakai, account masih aman. Best!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Dewi Lestari</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">17 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ROBLOX/RBX7.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Roblox cheat membantu farming! Unlimited resources membuat progress lebih cepat. Update rutin dan support membantu. Recommended!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Eko Wijaya</h4>
+                            <p>DELTAFORCE PLAYER</p>
+                            <span class="testimonial-time">1 bulan lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI DFM/DF1.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Delta Force cheat sangat smooth! Aimbot presisi dan wallhack membantu. Tidak ada lag atau crash. Support team sangat membantu!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Fitri Handayani</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">14 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI FF/FF6.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Free Fire Elite bagus untuk competitive! ESP membantu positioning dan no damage efektif. Update rutin tapi kadang ada delay kecil."
+                    </p>
+            </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Gunawan Sari</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">13 hari lalu</span>
+        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ML/ML6.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "MLBB Premium sangat membantu! Auto Win dan map hack efektif untuk ganking. Sudah 4 bulan pakai tanpa masalah. Highly recommended!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Hadi Prasetyo</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">16 hari lalu</span>
+                    </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI PUBG/PBG6.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "PUBG Mobile Pro cukup bagus! Aimbot akurat dan no recoil membantu. Tapi kadang ada bug kecil. Update biasanya tepat waktu."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Indah Permata</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">17 hari lalu</span>
+            </div>
+        </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ROBLOX/RBX8.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Roblox cheat luar biasa! Auto farm dan unlimited resources sangat membantu. Tidak perlu grind manual lagi. Terima kasih!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Joko Susilo</h4>
+                            <p>DELTAFORCE PLAYER</p>
+                            <span class="testimonial-time">1 bulan lalu</span>
+        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI DFM/DF6.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Delta Force cheat membantu gameplay! Aimbot dan speed hack bekerja dengan baik. Tapi kadang ada crash kecil. Overall masih oke."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Kartika Sari</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">14 hari lalu</span>
+            </div>
+                </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI FF/FF7.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Free Fire Elite sangat bagus! ESP membantu untuk positioning dan no damage membuat clutch lebih mudah. Update selalu tepat waktu!"
+                    </p>
+                    </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Lukman Hakim</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">13 hari lalu</span>
+                    </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+            </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ML/ML7.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "MLBB Premium membantu naik rank! Auto Win efektif dan lag hack membantu. Tapi kadang ada bug yang mengganggu. Masih undetected."
+                    </p>
+        </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Maya Kartika</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">16 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI PUBG/PBG7.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "PUBG Mobile Pro benar-benar worth it! Aimbot headshot rate tinggi dan no recoil membuat spray lebih akurat. Best investment!"
+                    </p>
+    </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Nur Hidayat</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">17 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ROBLOX/RBX9.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Roblox cheat membantu farming! Unlimited resources mempercepat progress. Tapi kadang ada masalah dengan sync. Pembayaran mudah."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Oki Setiawan</h4>
+                            <p>DELTAFORCE PLAYER</p>
+                            <span class="testimonial-time">1 bulan lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI DFM/DF4.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Delta Force cheat sangat smooth! Aimbot presisi dan wallhack membantu untuk pre-aim. Tidak ada lag atau crash. 10/10!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Putri Lestari</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">14 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI FF/FF8.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Free Fire Elite cukup bagus! ESP jelas dan no damage membantu survive. Update biasanya on time. Overall masih worth it."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Rizki Maulana</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">13 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ML/ML8.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "MLBB Premium luar biasa! Auto Win dan map hack sangat efektif. Sudah 5 bulan pakai tanpa masalah. Admin juga ramah!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Sari Dewi</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">16 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI PUBG/PBG2.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "PUBG Mobile Pro membantu rank push! Aimbot akurat dan wallhack membantu tactical play. Tapi kadang ada delay kecil. Masih recommended."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Teguh Santoso</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">17 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ROBLOX/RBX2.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Roblox cheat sangat membantu! Auto farm dan unlimited resources membuat progress lebih cepat. Support sangat responsif!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Udin Kurniawan</h4>
+                            <p>DELTAFORCE PLAYER</p>
+                            <span class="testimonial-time">1 bulan lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI DFM/DF3.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Delta Force cheat cukup bagus! Aimbot dan speed hack bekerja dengan baik. Tapi kadang ada crash kecil. Support membantu."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Vina Sari</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">14 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI FF/FF9.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Free Fire Elite sangat recommended! ESP dan No Damage bekerja sempurna. Sudah 3 bulan pakai tanpa masalah. Highly recommended!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Wahyu Pratama</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">13 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ML/ML3.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "MLBB Premium membantu mencapai Mythic Glory! Auto Win efektif dan lag hack membantu. Harga terjangkau untuk fitur yang ditawarkan."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Yani Kartika</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">16 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI PUBG/PBG7.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "PUBG Mobile Pro game changer! Aimbot sangat presisi dan wallhack membantu banget untuk tactical play. Best cheat ever!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Zainal Abidin</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">17 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ROBLOX/RBBX3.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Roblox cheat membantu farming! Unlimited resources membuat domain farming lebih efisien. Update rutin dan support responsif."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Agus Setiawan</h4>
+                            <p>DELTAFORCE PLAYER</p>
+                            <span class="testimonial-time">1 bulan lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI DFM/DF4.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Delta Force cheat sangat smooth! Aimbot presisi dan wallhack membantu untuk pre-aim. Tidak ada lag atau crash. Support team membantu!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Bella Permata</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">14 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI FF/FF10.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Free Fire Elite bagus untuk competitive play! ESP membantu dan no damage efektif. Update rutin tapi kadang ada delay kecil."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Candra Wijaya</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">13 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ML/PD3.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "MLBB Premium sangat membantu! Auto Win dan map hack efektif untuk ganking. Sudah 4 bulan pakai tanpa masalah. Recommended!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Diana Sari</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">16 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI PUBG/PBG4.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "PUBG Mobile Pro cukup bagus! Aimbot akurat dan no recoil membantu. Tapi kadang ada bug kecil. Update biasanya tepat waktu."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Erik Gunawan</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">17 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ROBLOX/RBX4.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Roblox cheat luar biasa! Auto farm dan unlimited resources sangat membantu. Tidak perlu grind manual lagi. Terima kasih TOKOCHEAT.ID!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Fajar Ramadhan</h4>
+                            <p>DELTAFORCE PLAYER</p>
+                            <span class="testimonial-time">1 bulan lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI DFM/DF5.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Delta Force cheat membantu gameplay! Aimbot dan speed hack bekerja dengan baik. Tapi kadang ada crash kecil. Overall masih oke."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Gita Lestari</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">14 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI FF/FF11.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Free Fire Elite sangat bagus untuk rank push! ESP membantu untuk positioning dan no damage membuat clutch lebih mudah. Highly recommended!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Hendra Kurniawan</h4>
+                            <p>MLBB PLAYER</p>
+                            <span class="testimonial-time">13 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ML/PD4.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "MLBB Premium membantu naik rank! Auto Win efektif dan lag hack membantu. Tapi kadang ada bug yang mengganggu. Masih undetected sih."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Indra Maulana</h4>
+                            <p>PUBGM PLAYER</p>
+                            <span class="testimonial-time">16 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI PUBG/PBG5.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "PUBG Mobile Pro benar-benar worth it! Aimbot headshot rate tinggi dan no recoil membuat spray control lebih mudah. Best investment!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Jihan Permata</h4>
+                            <p>ROBLOX PLAYER</p>
+                            <span class="testimonial-time">17 hari lalu</span>
+            </div>
+        </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI ROBLOX/RBX5.PNG" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Roblox cheat membantu farming! Unlimited resources mempercepat progress. Tapi kadang ada masalah dengan sync. Pembayaran mudah."
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Krisna Wijaya</h4>
+                            <p>DELTAFORCE PLAYER</p>
+                            <span class="testimonial-time">1 bulan lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI DFM/DF6.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Delta Force cheat sangat smooth! Aimbot presisi dan wallhack membantu untuk pre-aim. Tidak ada lag atau crash. Support team membantu!"
+                    </p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Lina Sari</h4>
+                            <p>FREEFIRE PLAYER</p>
+                            <span class="testimonial-time">14 hari lalu</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "TEMP_TEXT"
+                    </p>
+                    <img src="TESTI FF/FF12.jpg" alt="Bukti Feedback" class="testimonial-feedback-image">
+                    <p class="testimonial-text">
+                        "Free Fire Elite cukup bagus! ESP jelas dan no damage membantu survive. Update biasanya on time. Overall masih worth it."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Sidebar -->
+    <div class="dashboard-overlay" id="dashboardOverlay"></div>
+    <div class="dashboard-sidebar" id="dashboardSidebar">
+        <div class="dashboard-sidebar-header">
+            <h2>TOKOCHEAT.ID</h2>
+            <button class="dashboard-close" id="dashboardClose">&times;</button>
+        </div>
+        <nav class="dashboard-nav">
+            <a href="index.html#home" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Home</span>
+            </a>
+            <a href="index3.html" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Produk</span>
+            </a>
+            <a href="index.html#about" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Tentang</span>
+            </a>
+            <a href="index2.html#testimonials" class="dashboard-link active" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Testimoni</span>
+            </a>
+            <a href="index10.html" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.59 13.41L13.42 20.58C13.2343 20.767 13.0137 20.9163 12.7709 21.0211C12.5281 21.1258 12.2678 21.1836 12.005 21.1916C11.7422 21.1996 11.479 21.1577 11.2296 21.0678C10.9802 20.9779 10.7491 20.8415 10.55 20.66L3.36 13.47C2.97875 13.089 2.78547 12.5622 2.82545 12.0312C2.86543 11.5002 3.13528 11.0014 3.58 10.66L9.88 5.35C10.061 5.14995 10.2809 5.01228 10.5215 4.93706C10.7621 4.86184 11.0167 4.85118 11.2627 4.90596C11.5087 4.96074 11.7392 5.07945 11.936 5.253L18.15 10.94C18.3406 11.1201 18.4914 11.3372 18.5934 11.5779C18.6954 11.8186 18.7462 12.0778 18.7425 12.3389C18.7388 12.6 18.6806 12.8575 18.5716 13.0954C18.4626 13.3333 18.3052 13.5467 18.11 13.72L12.36 18.83C12.1552 19.0101 11.9151 19.1444 11.6541 19.2247C11.3931 19.305 11.1167 19.3293 10.845 19.2957C10.5733 19.2621 10.3121 19.1714 10.0781 19.0291C9.84408 18.8868 9.64275 18.6962 9.487 18.47L7.1 15.28" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="18" cy="6" r="2" fill="currentColor"/>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Promo</span>
+            </a>
+            <a href="index11.html" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8C20.9996 7.64928 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64928 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.27 6.96L12 12.01L20.73 6.96" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 22.08V12" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Berita</span>
+            </a>
+            <a href="index9.html" class="dashboard-link" onclick="closeDashboard()">
+                <span class="dashboard-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </span>
+                <span class="dashboard-text">Riwayat Order</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Dashboard Functions
+        function openDashboard() {
+            const sidebar = document.getElementById('dashboardSidebar');
+            const overlay = document.getElementById('dashboardOverlay');
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+            document.body.classList.add('dashboard-open');
+        }
+
+        function closeDashboard() {
+            const sidebar = document.getElementById('dashboardSidebar');
+            const overlay = document.getElementById('dashboardOverlay');
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('dashboard-open');
+        }
+
+        // Initialize dashboard
+        const dashboardBtn = document.getElementById('dashboardBtn');
+        const dashboardClose = document.getElementById('dashboardClose');
+        const dashboardOverlay = document.getElementById('dashboardOverlay');
+
+        if (dashboardBtn) {
+            dashboardBtn.addEventListener('click', openDashboard);
+        }
+
+        if (dashboardClose) {
+            dashboardClose.addEventListener('click', closeDashboard);
+        }
+
+        if (dashboardOverlay) {
+            dashboardOverlay.addEventListener('click', closeDashboard);
+        }
+
+        // Auto-open on desktop
+        function checkDesktopDashboard() {
+            const sidebar = document.getElementById('dashboardSidebar');
+            if (window.innerWidth >= 1024) {
+                if (sidebar) {
+                    sidebar.classList.add('active');
+                }
+            } else {
+                if (sidebar) {
+                    sidebar.classList.remove('active');
+                }
+            }
+        }
+
+        // Check on load
+        checkDesktopDashboard();
+
+        // Check on resize
+        window.addEventListener('resize', checkDesktopDashboard);
+
+        // Set active link based on current page
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+        const links = document.querySelectorAll('.dashboard-link');
+        
+        links.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (currentHash && href.includes(currentHash)) {
+                link.classList.add('active');
+            } else if (currentPath.includes('index2.html') && href.includes('index2.html')) {
+                link.classList.add('active');
+            } else if (currentPath.includes('index9.html') && href.includes('index9.html')) {
+                link.classList.add('active');
+            } else if (currentPath.includes('index10.html') && href.includes('index10.html')) {
+                link.classList.add('active');
+            } else if (currentPath.includes('index11.html') && href.includes('index11.html')) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 TOKOCHEAT.ID. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-container">
+            <a href="index.html" class="bottom-nav-item" id="navHome">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">Home</span>
+            </a>
+            <a href="index2.html" class="bottom-nav-item active uppercase" id="navTestimoni">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">TESTIMONI</span>
+            </a>
+            <a href="index10.html" class="bottom-nav-item" id="navPromo">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.59 13.41L13.42 20.58C13.2343 20.767 13.0137 20.9163 12.7709 21.0211C12.5281 21.1258 12.2678 21.1836 12.005 21.1916C11.7422 21.1996 11.479 21.1577 11.2296 21.0678C10.9802 20.9779 10.7491 20.8415 10.55 20.66L3.36 13.47C2.97875 13.089 2.78547 12.5622 2.82545 12.0312C2.86543 11.5002 3.13528 11.0014 3.58 10.66L9.88 5.35C10.061 5.14995 10.2809 5.01228 10.5215 4.93706C10.7621 4.86184 11.0167 4.85118 11.2627 4.90596C11.5087 4.96074 11.7392 5.07945 11.936 5.253L18.15 10.94C18.3406 11.1201 18.4914 11.3372 18.5934 11.5779C18.6954 11.8186 18.7462 12.0778 18.7425 12.3389C18.7388 12.6 18.6806 12.8575 18.5716 13.0954C18.4626 13.3333 18.3052 13.5467 18.11 13.72L12.36 18.83C12.1552 19.0101 11.9151 19.1444 11.6541 19.2247C11.3931 19.305 11.1167 19.3293 10.845 19.2957C10.5733 19.2621 10.3121 19.1714 10.0781 19.0291C9.84408 18.8868 9.64275 18.6962 9.487 18.47L7.1 15.28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="18" cy="6" r="2" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="nav-text">Promo</span>
+            </a>
+            <a href="index11.html" class="bottom-nav-item uppercase" id="navBerita">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V8C20.9996 7.64928 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64928 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.27 6.96L12 12.01L20.73 6.96" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 22.08V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">BERITA</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Set active navigation item based on current page
+        const currentPath = window.location.pathname;
+        const navItems = document.querySelectorAll('.bottom-nav-item');
+        
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            const href = item.getAttribute('href');
+            if (currentPath.includes(href) || (currentPath.includes('index2.html') && href === 'index2.html')) {
+                item.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
+

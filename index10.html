@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Promo - TOKOCHEAT.ID</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #000000;
+            color: #e0e0e0;
+            padding-bottom: 70px;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .promo-section {
+            padding: 2rem 0 4rem;
+            min-height: 80vh;
+        }
+
+        .promo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .promo-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-family: 'Bebas Neue', 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+            color: #ffd700;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 100% center;
+            }
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid #333;
+            background: rgba(255, 255, 255, 0.05);
+            color: #aaa;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-tab:hover {
+            border-color: #ffd700;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #000;
+            border-color: #ffd700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Promo Cards */
+        .promo-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .promo-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(15, 15, 15, 0.95) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .promo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .promo-card:hover {
+            border-color: #ffd700;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.1);
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .promo-card:hover::before {
+            opacity: 1;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+            background-size: 200% auto;
+            padding: 1.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .promo-banner-text {
+            color: #000;
+            font-weight: 900;
+            font-size: 1.3rem;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .promo-banner-logo {
+            width: 80px;
+            height: auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .promo-badge {
+            position: absolute;
+            top: -8px;
+            left: 25px;
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            transform: rotate(-5deg);
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4), 0 0 20px rgba(255, 0, 0, 0.2);
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .promo-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2.5rem;
+            padding: 2.5rem;
+            align-items: center;
+        }
+
+        .promo-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .promo-offer {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff0000 0%, #ff4444 50%, #ff0000 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            animation: gradient-shift 2s ease infinite;
+            text-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+            filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.3));
+        }
+
+        .promo-details {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .promo-button {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .promo-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .promo-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .promo-button:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .promo-image-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            transition: all 0.4s ease;
+        }
+
+        .promo-card:hover .promo-image-container {
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .promo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .promo-card:hover .promo-image {
+            transform: scale(1.1);
+        }
+
+        .promo-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.08) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-size: 4rem;
+            position: relative;
+        }
+
+        .promo-image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .promo-tags {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            z-index: 2;
+        }
+
+        .promo-tag {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: #fff;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .promo-card:hover .promo-tag {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .promo-disclaimer {
+            color: #888;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .promo-date {
+            margin-top: 1.2rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .promo-date::before {
+            content: '📅';
+            font-size: 1rem;
+        }
+
+        .promo-description {
+            color: #bbb;
+            font-size: 0.95rem;
+            margin-top: 0.8rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            border-top: 2px solid #ffd700;
+            padding: 0.5rem 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .bottom-nav-container {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .bottom-nav-item .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .bottom-nav-item .nav-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bottom-nav-item .nav-text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #aaa;
+            text-align: center;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .bottom-nav-item.active {
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+        }
+
+        .bottom-nav-item.active .nav-icon svg {
+            fill: #ffd700;
+            stroke: #ffd700;
+        }
+
+        .bottom-nav-item.active .nav-icon svg path {
+            fill: none;
+            stroke: #ffd700;
+        }
+
+        .bottom-nav-item.active .nav-text {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .bottom-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #ffd700;
+        }
+
+        .bottom-nav-item:not(.active) .nav-icon svg {
+            fill: #aaa;
+            stroke: #aaa;
+        }
+
+        .bottom-nav-item:not(.active) .nav-icon svg path {
+            fill: none;
+            stroke: #aaa;
+        }
+
+        .bottom-nav-item:not(.active) .nav-text {
+            color: #aaa;
+        }
+
+        .bottom-nav-item.uppercase .nav-text {
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .promo-title {
+                font-size: 2rem;
+            }
+
+            .promo-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .promo-image-container {
+                width: 100%;
+                height: 220px;
+            }
+
+            .promo-offer {
+                font-size: 2.2rem;
+            }
+
+            .promo-banner {
+                padding: 1.5rem 1.5rem;
+            }
+
+            .promo-banner-text {
+                font-size: 1.1rem;
+            }
+
+            .filter-tabs {
+                gap: 0.5rem;
+            }
+
+            .filter-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .promo-title {
+                font-size: 1.5rem;
+            }
+
+            .promo-content {
+                padding: 1.2rem;
+            }
+
+            .promo-offer {
+                font-size: 1.8rem;
+            }
+
+            .promo-banner {
+                padding: 1.2rem 1rem;
+            }
+
+            .promo-banner-text {
+                font-size: 1rem;
+            }
+
+            .promo-image-container {
+                height: 180px;
+            }
+
+            .promo-image-placeholder {
+                font-size: 3rem;
+            }
+
+            .promo-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .bottom-nav-item .nav-text {
+                font-size: 0.7rem;
+            }
+
+            .bottom-nav-item {
+                padding: 0.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="TKC.png" alt="TOKOCHEAT.ID Logo">
+                <h1>TOKOCHEAT.ID</h1>
+            </div>
+        </div>
+    </header>
+
+    <section class="promo-section">
+        <div class="promo-container">
+            <h1 class="promo-title">Daftar Promo</h1>
+            
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">Semua</button>
+                <button class="filter-tab" data-filter="mlbb">Mobile Legends</button>
+                <button class="filter-tab" data-filter="ff">Free Fire</button>
+                <button class="filter-tab" data-filter="pubg">PUBG Mobile</button>
+                <button class="filter-tab" data-filter="roblox">Roblox</button>
+                <button class="filter-tab" data-filter="df">Delta Force</button>
+            </div>
+
+            <!-- Promo List -->
+            <div class="promo-list">
+                <!-- Promo 1 -->
+                <div class="promo-card" data-category="mlbb">
+                    <div class="promo-banner">
+                        <span class="promo-badge">Khusus New User</span>
+                        <div class="promo-banner-text">Top Up Game Jadi Lebih Hemat!</div>
+                    </div>
+                    <div class="promo-content">
+                        <div class="promo-info">
+                            <div class="promo-offer">CASH BACK 70%</div>
+                            <div class="promo-details">
+                                Up to 10rb GoPay Coins<br>
+                                min. trx. 10rb
+                            </div>
+                            <button class="promo-button">Bayar pakai Aplikasi Baru GoPay</button>
+                            <div class="promo-disclaimer">*S&K Berlaku</div>
+                            <div class="promo-date">04 November 2025</div>
+                            <div class="promo-description">Nikmati Cashback Top Up 70% sepanjang Oktober 2025 pakai GoPay App!</div>
+                        </div>
+                        <div class="promo-image-container">
+                            <div class="promo-image-placeholder">🎮</div>
+                            <div class="promo-tags">
+                                <div class="promo-tag">Top Up Sekarang!</div>
+                                <div class="promo-tag">HARGA FINAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promo 2 -->
+                <div class="promo-card" data-category="all">
+                    <div class="promo-banner">
+                        <div class="promo-banner-text">Apply & Aktivasi alloPayLater Dapatkan</div>
+                    </div>
+                    <div class="promo-content">
+                        <div class="promo-info">
+                            <div class="promo-offer">BONUS KUPON S.D 500rb</div>
+                            <div class="promo-details">
+                                Hingga 31 Januari 2026 | *S&K Berlaku
+                            </div>
+                            <button class="promo-button">Apply sekarang di sini!</button>
+                            <div class="promo-date">04 November 2025</div>
+                            <div class="promo-description">Apply dan Aktivasi Allo PayLater, dapatkan Bonus Kupon 500 ribu!</div>
+                        </div>
+                        <div class="promo-image-container">
+                            <div class="promo-image-placeholder">💳</div>
+                            <div class="promo-tags">
+                                <div class="promo-tag">Apply sekarang di sini!</div>
+                                <div class="promo-tag">Top Up Sekarang!</div>
+                                <div class="promo-tag">HARGA FINAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promo 3 -->
+                <div class="promo-card" data-category="ff">
+                    <div class="promo-banner">
+                        <span class="promo-badge">Hot Deal</span>
+                        <div class="promo-banner-text">Diskon Spesial Free Fire!</div>
+                    </div>
+                    <div class="promo-content">
+                        <div class="promo-info">
+                            <div class="promo-offer">DISKON 50%</div>
+                            <div class="promo-details">
+                                Untuk semua paket cheat Free Fire<br>
+                                Berlaku hingga akhir bulan
+                            </div>
+                            <button class="promo-button">Beli Sekarang</button>
+                            <div class="promo-disclaimer">*S&K Berlaku</div>
+                            <div class="promo-date">15 Desember 2024</div>
+                            <div class="promo-description">Dapatkan diskon hingga 50% untuk semua produk cheat Free Fire premium!</div>
+                        </div>
+                        <div class="promo-image-container">
+                            <div class="promo-image-placeholder">🔥</div>
+                            <div class="promo-tags">
+                                <div class="promo-tag">HARGA FINAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promo 4 -->
+                <div class="promo-card" data-category="pubg">
+                    <div class="promo-banner">
+                        <span class="promo-badge">New User</span>
+                        <div class="promo-banner-text">Bonus Paket Lifetime!</div>
+                    </div>
+                    <div class="promo-content">
+                        <div class="promo-info">
+                            <div class="promo-offer">BONUS LIFETIME</div>
+                            <div class="promo-details">
+                                Pembeli baru mendapatkan bonus paket Lifetime gratis<br>
+                                Untuk pembelian pertama
+                            </div>
+                            <button class="promo-button">Daftar Sekarang</button>
+                            <div class="promo-disclaimer">*S&K Berlaku</div>
+                            <div class="promo-date">10 Desember 2024</div>
+                            <div class="promo-description">Pembeli baru mendapatkan bonus paket Lifetime gratis untuk pembelian pertama!</div>
+                        </div>
+                        <div class="promo-image-container">
+                            <div class="promo-image-placeholder">🎯</div>
+                            <div class="promo-tags">
+                                <div class="promo-tag">FREE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-container">
+            <a href="index.html" class="bottom-nav-item" id="navHome">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">Home</span>
+            </a>
+            <a href="index2.html" class="bottom-nav-item uppercase" id="navTestimoni">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">TESTIMONI</span>
+            </a>
+            <a href="index10.html" class="bottom-nav-item active" id="navPromo">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.59 13.41L13.42 20.58C13.2343 20.767 13.0137 20.9163 12.7709 21.0211C12.5281 21.1258 12.2678 21.1836 12.005 21.1916C11.7422 21.1996 11.479 21.1577 11.2296 21.0678C10.9802 20.9779 10.7491 20.8415 10.55 20.66L3.36 13.47C2.97875 13.089 2.78547 12.5622 2.82545 12.0312C2.86543 11.5002 3.13528 11.0014 3.58 10.66L9.88 5.35C10.061 5.14995 10.2809 5.01228 10.5215 4.93706C10.7621 4.86184 11.0167 4.85118 11.2627 4.90596C11.5087 4.96074 11.7392 5.07945 11.936 5.253L18.15 10.94C18.3406 11.1201 18.4914 11.3372 18.5934 11.5779C18.6954 11.8186 18.7462 12.0778 18.7425 12.3389C18.7388 12.6 18.6806 12.8575 18.5716 13.0954C18.4626 13.3333 18.3052 13.5467 18.11 13.72L12.36 18.83C12.1552 19.0101 11.9151 19.1444 11.6541 19.2247C11.3931 19.305 11.1167 19.3293 10.845 19.2957C10.5733 19.2621 10.3121 19.1714 10.0781 19.0291C9.84408 18.8868 9.64275 18.6962 9.487 18.47L7.1 15.28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="18" cy="6" r="2" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="nav-text">Promo</span>
+            </a>
+            <a href="index11.html" class="bottom-nav-item uppercase" id="navBerita">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V8C20.9996 7.64928 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64928 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.27 6.96L12 12.01L20.73 6.96" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 22.08V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="nav-text">BERITA</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Filter functionality
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const promoCards = document.querySelectorAll('.promo-card');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                filterTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                const filter = tab.getAttribute('data-filter');
+
+                // Filter promo cards
+                promoCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Set active navigation item based on current page
+        const currentPath = window.location.pathname;
+        const navItems = document.querySelectorAll('.bottom-nav-item');
+        
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            const href = item.getAttribute('href');
+            if (currentPath.includes(href) || (currentPath.includes('index10.html') && href === 'index10.html')) {
+                item.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
